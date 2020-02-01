@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">単価計算機</string>
+    <string name="lbl_price">価格</string>
+    <string name="lbl_units">数量</string>
+    <string name="btn_calc_price">▲価格計算</string>
+    <string name="btn_calc_unitprice">▼単価計算</string>
+    <string name="btn_clear">クリア</string>
+    <string name="lbl_unit_price">単価</string>
+    <string name="lbl_tax_included">税込み</string>
+    <string name="lbl_without_tax">税抜き</string>
+    <string name="msg_error">エラー</string>
+</resources>
