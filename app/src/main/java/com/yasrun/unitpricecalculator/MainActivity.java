@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         btnCalcPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard(null);
+                hideKeyboard();
                 txtCalcResult.requestFocus();
                 calcPrice();
             }
@@ -121,16 +121,19 @@ public class MainActivity extends AppCompatActivity {
         btnCalcUnitPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard(null);
+                hideKeyboard();
                 txtCalcResult.requestFocus();
                 calcUnitPrice();
             }
         });
 
+        /**
+         * クリアボタン押下イベント
+         */
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard(null);
+                hideKeyboard();
                 clear();
             }
         });
@@ -243,8 +246,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addHistory(String v1, String v2, String operator, String v3, String answer1, String answer2) {
         if (answer1 != null || answer2 != null) {
-            String line = String.format("\\%s %s %s = \\%s", v1, operator, v3, answer1)
-                     + String.format(" --- \\%s %s %s = \\%s", v2, operator, v3, answer2);
+            String line = String.format("%s %s %s = %s", v1, operator, v3, answer1)
+                     + String.format(" --- %s %s %s = %s", v2, operator, v3, answer2);
             insert(line);
         }
     }
@@ -257,7 +260,10 @@ public class MainActivity extends AppCompatActivity {
         txtCalcResult.setText(line + "\n" + txtCalcResult.getText().toString());
     }
 
-    private void hideKeyboard(View v) {//指定ViewのキーボードをOFFにする
+    /**
+     * 現在フォーカスされているViewのキーボードをOFFにする
+     */
+    private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = this.getCurrentFocus();
         if (view == null) {
