@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setEvents() {
         /**
-         * 税抜き価格欄フォーカスロストイベント
+         * 税抜き価格欄フォーカス変化イベント
          */
         txtPriceWithoutTax.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * 税込み抜き価格欄フォーカスロストイベント
+         * 税込み抜き価格欄フォーカス変化イベント
          */
         txtPriceTaxIncluded.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * 税抜き単価欄フォーカスロストイベント
+         * 税抜き単価欄フォーカス変化イベント
          */
         txtUnitPriceWithoutTax.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * 税込み単価欄フォーカスロストイベント
+         * 税込み単価欄フォーカス変化イベント
          */
         txtUnitPriceTaxIncluded.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
