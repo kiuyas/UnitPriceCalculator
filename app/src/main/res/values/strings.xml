@@ -9,4 +9,14 @@
     <string name="lbl_tax_included">税込み</string>
     <string name="lbl_without_tax">税抜き</string>
     <string name="msg_error">エラー</string>
+    <string-array name="taxList">
+    <item>8%</item>
+    <item>10%</item>
+    </string-array>
+    <string-array name="roudingList">
+        <item>切上げ</item>
+        <item>四捨五入</item>
+        <item>切捨て</item>
+        <item>そのまま</item>
+    </string-array>
 </resources>

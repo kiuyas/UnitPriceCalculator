@@ -1,15 +1,35 @@
 package com.yasrun.unitpricecalculator;
 
-import android.content.res.Resources;
 import android.util.Log;
-import android.widget.EditText;
 
 import java.text.DecimalFormat;
 
 public class CalcUtil {
 
+    /** 既定の消費税率 */
+    public static final double DEFAULT_TAX = 0.08;
+
     /** 税込み価格計算係数 */
-    public static final double WITH_TAX = 1.08;
+    public static double withTax = 1 + DEFAULT_TAX;
+
+    /** 端数処理方式 0:切上げ, 1:四捨五入, 2:切捨て, 3:そのまま */
+    public static int roundingStyle = 0;
+
+    /**
+     * 消費税の設定
+     * @param tax 消費税率
+     */
+    public static void setTax(double tax) {
+        withTax = 1 + tax;
+    }
+
+    /**
+     * 端数処理方式の設定
+     * @param _roundingStyle 消費税率
+     */
+    public static void setRoundingStyle(int _roundingStyle) {
+        roundingStyle = _roundingStyle;
+    }
 
     /**
      * 税込み価格の計算
@@ -18,7 +38,7 @@ public class CalcUtil {
      */
     public static String calcPriceTaxIncluded(String price) {
         try {
-            return toString(Double.parseDouble(price) * WITH_TAX);
+            return toString(round(Double.parseDouble(price) * withTax));
         } catch(NumberFormatException e) {
             return null;
         }
@@ -31,7 +51,7 @@ public class CalcUtil {
      */
     public static String calcPriceWithoutTax(String price) {
         try {
-            return toString(Double.parseDouble(price)/ WITH_TAX);
+            return toString(round(Double.parseDouble(price)) / withTax);
         } catch(NumberFormatException e) {
             return null;
         }
@@ -49,7 +69,7 @@ public class CalcUtil {
         try {
             double price0 = Double.parseDouble(unitPrice);
             double units0 = Double.parseDouble(units);
-            result = toString( price0 * units0);
+            result = toString(round( price0 * units0));
         } catch(NumberFormatException e) {
             Log.e("_test_", e.getMessage(), e);
             result = null;
@@ -70,13 +90,33 @@ public class CalcUtil {
         try {
             double price0 = Double.parseDouble(price);
             double units0 = Double.parseDouble(units);
-            result = toString(price0 / units0);
+            result = toString(round(price0 / units0));
         } catch(NumberFormatException e) {
             Log.e("_test_", e.getMessage(), e);
             result = null;
         }
 
         return result;
+    }
+
+    /**
+     * 端数の処理を行います。
+     * @param value 元の値
+     * @return 端数処理された値
+     */
+    public static double round(double value) {
+        switch(roundingStyle) {
+            case 0:
+                value = Math.ceil(value);
+                break;
+            case 1:
+                value = Math.round(value);
+                break;
+            case 2:
+                value = Math.floor(value);
+                break;
+        }
+        return value;
     }
 
     /**

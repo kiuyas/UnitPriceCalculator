@@ -3,13 +3,13 @@ package com.yasrun.unitpricecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCalcUnitPrice = null;
     private TextView txtCalcResult = null;
     private Button btnClear = null;
+    private Spinner cmbTax = null;
+    private Spinner cmbRounding = null;
 
     /**
      * 画面作成処理
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         btnCalcPrice = findViewById(R.id.btnCalcPrice);
         btnCalcUnitPrice = findViewById(R.id.btnCalcUnitPrice);
         btnClear = findViewById(R.id.btnClear);
+        cmbTax = findViewById(R.id.cmbTax);
+        cmbRounding = findViewById(R.id.cmbRounding);
     }
 
     /**
@@ -137,6 +141,13 @@ public class MainActivity extends AppCompatActivity {
                 clear();
             }
         });
+
+//        cmbTax.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("_test_", String.format("%d %ld", position, id));
+//            }
+//        });
     }
 
     /**
@@ -144,6 +155,14 @@ public class MainActivity extends AppCompatActivity {
      * @param v フォーカスが変化した入力欄
      */
     private void calc(View v) {
+        Log.d("_test_", String.format("%d", cmbTax.getSelectedItemId()));
+        if (cmbTax.getSelectedItemId() == 0) {
+            CalcUtil.setTax(0.08);
+        } else {
+            CalcUtil.setTax(0.1);
+        }
+        CalcUtil.setRoundingStyle((int)cmbRounding.getSelectedItemId());
+
         String value = ((EditText)v).getText().toString();
         String result;
 
