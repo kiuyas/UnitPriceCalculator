@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getControls();
         setEvents();
+        clear();
     }
 
     /**
@@ -166,23 +167,19 @@ public class MainActivity extends AppCompatActivity {
         String value = ((EditText)v).getText().toString();
         String result;
 
-        switch(v.getId()) {
-            case R.id.txtPriceWithoutTax:
-                result = CalcUtil.calcPriceTaxIncluded(value);
-                setAnswer(txtPriceTaxIncluded, result);
-                break;
-            case R.id.txtPriceTaxIncluded:
-                result = CalcUtil.calcPriceWithoutTax(value);
-                setAnswer(txtPriceWithoutTax, result);
-                break;
-            case R.id.txtUnitPriceWithoutTax:
-                result = CalcUtil.calcPriceTaxIncluded(value);
-                setAnswer(txtUnitPriceTaxIncluded, result);
-                break;
-            case R.id.txtUnitPriceTaxIncluded:
-                result = CalcUtil.calcPriceWithoutTax(value);
-                setAnswer(txtUnitPriceWithoutTax, result);
-                break;
+        int id = v.getId();
+        if (id == R.id.txtPriceWithoutTax) {
+            result = CalcUtil.calcPriceTaxIncluded(value);
+            setAnswer(txtPriceTaxIncluded, result);
+        } else if (id == R.id.txtPriceTaxIncluded) {
+            result = CalcUtil.calcPriceWithoutTax(value);
+            setAnswer(txtPriceWithoutTax, result);
+        } else if (id == R.id.txtUnitPriceWithoutTax) {
+            result = CalcUtil.calcPriceTaxIncluded(value);
+            setAnswer(txtUnitPriceTaxIncluded, result);
+        } else if (id == R.id.txtUnitPriceTaxIncluded) {
+            result = CalcUtil.calcPriceWithoutTax(value);
+            setAnswer(txtUnitPriceWithoutTax, result);
         }
     }
 
