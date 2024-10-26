@@ -50,9 +50,9 @@ If you have any questions regarding privacy while using the Application, or have
 
 **Email Address**
 
-kiuyas.develop<at>gmail.com
+kiuyas.develop[at]gmail.com
 
-Please replace '<at>' to '@'.
+Please replace '[at]' to '@'.
 
 * * *
 
